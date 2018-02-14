@@ -15,7 +15,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 
 import java.net.MalformedURLException;
@@ -31,12 +30,7 @@ import java.util.*;
 public class clickbutton {
     
             public static AppiumDriver  wd;
-            public static Random random = new Random();
-            static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             public static Long times;
-            private static String text = "App";
-
-
 
 
             public static void main(String[] args) throws MalformedURLException {
@@ -51,7 +45,7 @@ public class clickbutton {
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
-
+// Template if you want to use timeout
 //              System.out.println("Start");
 //              System.out.print("Input times : ");
 
@@ -61,12 +55,9 @@ public class clickbutton {
 //              long startTime = System.currentTimeMillis();
 //              long endTime = startTime+times;
 //
-//              //profile();
+//             
 //
-
-//
-
-
+//              while (System.currentTimeMillis()<endTime)
             }
 
             public static void goBack(){
@@ -110,6 +101,25 @@ public class clickbutton {
                             System.out.println("ERROR:getNUM");
                         }
                 return count;
+            }
+            
+            //if it error return ERROR:name
+            public static String getName(){
+                String answer = "ERROR:name";
+                try{
+                    {
+                        
+                        String name = wd.getPageSource();
+                        int hashed = name.hashCode();
+                        answer = Integer.toString(hashed);                  
+                        return answer;
+            
+                    }
+                        }catch(Exception e)
+                        {
+                            System.out.println("ERROR:name");
+                        }
+                return answer;
             }
                 
 }
