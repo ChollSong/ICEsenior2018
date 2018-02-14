@@ -30,62 +30,69 @@ import java.util.*;
 
 public class clickbutton {
     
-    public static AppiumDriver wd;
-    public static Random random = new Random();
-    static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    public static Long times;
-    private static String text = "App";
-    
-    
-    
-    
-    
-    public static void main(String[] args) throws MalformedURLException {
-        
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("appium-version", "1.7.2");
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
-        capabilities.setCapability("deviceName", "EP73249JM1");
-        capabilities.setCapability("unicodeKeyboard", "true");
-        capabilities.setCapability("app", "/Users/Kaneks/Desktop/Senior/apk/ApiDemos-debug.apk");
-        wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
-        wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        
-        
-        System.out.println("Start");
-        System.out.print("Input times : ");
-        
-        Scanner scanner = new Scanner(System.in);
-        long times = scanner.nextLong();
-        times = times*60000;
-        long startTime = System.currentTimeMillis();
-        long endTime = startTime+times;
-        
-        //profile();
-        
-        while (System.currentTimeMillis()<endTime)
-            try{
-                {
-                    
-                    WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).textMatches(\"App\")"));
-                    System.out.println("driver=" + el);
-                    el.click();
-                    ((AndroidDriver) wd).pressKeyCode(AndroidKeyCode.BACK);
-                    
-                    
-                }
-            }catch(Exception e)
-        {
-            System.out.println("got some error here!!!");
-        }
-        System.out.println("finish");
-        
-        
-        
-    }
-    
-    
-    
-}
+            public static AppiumDriver  wd;
+            public static Random random = new Random();
+            static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            public static Long times;
+            private static String text = "App";
+            public static String tittle;
 
+
+
+
+            public static void main(String[] args) throws MalformedURLException {
+                
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.setCapability("appium-version", "1.7.2");
+                capabilities.setCapability("platformName", "Android");
+                capabilities.setCapability("platformVersion", "5.1.1");
+                capabilities.setCapability("deviceName", "EP73249JM1");
+                capabilities.setCapability("unicodeKeyboard", "true");
+                capabilities.setCapability("app", "/Users/Kaneks/Desktop/Senior/apk/ApiDemos-debug.apk");
+                wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+                wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+
+//              System.out.println("Start");
+//              System.out.print("Input times : ");
+
+//              Scanner scanner = new Scanner(System.in);
+//              long times = scanner.nextLong();
+//              times = times*60000;
+//              long startTime = System.currentTimeMillis();
+//              long endTime = startTime+times;
+
+
+
+
+            }
+
+            public static void goBack(){
+                try{
+                    {
+                        
+                        ((AndroidDriver) wd).pressKeyCode(AndroidKeyCode.BACK);
+            
+                    }
+                        }catch(Exception e)
+                        {
+                            System.out.println("ERROR:back");
+                        }
+            }
+
+            public static void goIndex(int i){
+                try{
+                    {
+                        
+                        WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).instance("+i+")"));   
+                        el.click();
+            
+                    }
+                        }catch(Exception e)
+                        {
+                            System.out.println("ERROR:index");
+                        }
+            }
+                
+}
+          
