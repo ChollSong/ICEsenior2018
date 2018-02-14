@@ -35,7 +35,6 @@ public class clickbutton {
             static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             public static Long times;
             private static String text = "App";
-            public static String tittle;
 
 
 
@@ -61,8 +60,29 @@ public class clickbutton {
 //              times = times*60000;
 //              long startTime = System.currentTimeMillis();
 //              long endTime = startTime+times;
+//
+//              //profile();
+//
+//              while (System.currentTimeMillis()<endTime)             
+//                  try{
+//              {
+            
+                    WebElement el = wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true)"));
+                    System.out.println(wd); 
+                    System.out.println(el);
+                    String title = el.getText();
+                    System.out.println(title);
+//                  el.click();
+//                  ((AndroidDriver) wd).pressKeyCode(AndroidKeyCode.BACK);
 
-
+                
+//              }
+//                  }catch(Exception e)
+//                  {
+//                      System.out.println("got some error here!!!");
+//                  }
+//              System.out.println("finish");
+//
 
 
             }
@@ -95,4 +115,4 @@ public class clickbutton {
             }
                 
 }
-          
+                    
