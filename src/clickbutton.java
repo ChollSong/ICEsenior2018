@@ -63,25 +63,7 @@ public class clickbutton {
 //
 //              //profile();
 //
-//              while (System.currentTimeMillis()<endTime)             
-//                  try{
-//              {
-            
-                    WebElement el = wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true)"));
-                    System.out.println(wd); 
-                    System.out.println(el);
-                    String title = el.getText();
-                    System.out.println(title);
-//                  el.click();
-//                  ((AndroidDriver) wd).pressKeyCode(AndroidKeyCode.BACK);
 
-                
-//              }
-//                  }catch(Exception e)
-//                  {
-//                      System.out.println("got some error here!!!");
-//                  }
-//              System.out.println("finish");
 //
 
 
@@ -112,6 +94,22 @@ public class clickbutton {
                         {
                             System.out.println("ERROR:index");
                         }
+            }
+            
+            //if it error return -1
+            public static int getClickableNum(){
+                int count = -1;
+                try{
+                    {
+                        List<MobileElement> el = (List<MobileElement>) wd.findElements(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true)"));
+                        count = el.size();
+                        return count;
+                    }
+                        }catch(Exception e)
+                        {
+                            System.out.println("ERROR:getNUM");
+                        }
+                return count;
             }
                 
 }
