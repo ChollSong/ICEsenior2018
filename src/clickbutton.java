@@ -41,10 +41,11 @@ public class clickbutton {
                 capabilities.setCapability("platformVersion", "5.1.1");
                 capabilities.setCapability("deviceName", "EP73249JM1");
                 capabilities.setCapability("unicodeKeyboard", "true");
-                capabilities.setCapability("app", "/Users/Kaneks/Desktop/Senior/apk/ApiDemos-debug.apk");
+                capabilities.setCapability("app", "/Users/Kaneks/Desktop/Senior/apk/com.eclipsim.gpsstatus2_8.0.170-170_minAPI14(nodpi)_apkmirror.com.apk");
+                capabilities.setCapability("fullReset", "true");
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-
+                
 // Template if you want to use timeout
 //              System.out.println("Start");
 //              System.out.print("Input times : ");
@@ -58,6 +59,10 @@ public class clickbutton {
 //             
 //
 //              while (System.currentTimeMillis()<endTime)
+                
+                int x = getClickableNum();
+                System.out.println(x);
+           
             }
 
             public static void goBack(){
@@ -121,6 +126,9 @@ public class clickbutton {
                         }
                 return answer;
             }
+            
+            
+            
                 
 }
                     
