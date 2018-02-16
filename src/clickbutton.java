@@ -38,13 +38,19 @@ public class clickbutton {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setCapability("appium-version", "1.7.2");
                 capabilities.setCapability("platformName", "Android");
-                capabilities.setCapability("platformVersion", "5.1.1");
-                capabilities.setCapability("deviceName", "EP73249JM1");
-                capabilities.setCapability("unicodeKeyboard", "true");
-                capabilities.setCapability("app", "/Users/Kaneks/Desktop/Senior/apk/com.eclipsim.gpsstatus2_8.0.170-170_minAPI14(nodpi)_apkmirror.com.apk");
+                capabilities.setCapability("platformVersion", "6.0");
+                capabilities.setCapability("deviceName", "YFBDU15519002831");
+                capabilities.setCapability("unicodeKeyboard", "true");                
+                capabilities.setCapability("app", "C:/Users/Chollsong212/Documents/SeniorProject/Senior/Senior/apk/com.top.android.boost.apk");
                 capabilities.setCapability("fullReset", "true");
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+                
+                String firstPageName = getName();
+                System.out.println(firstPageName);
+                System.out.println(getClickableNum());
+                //create a search Tree
+                SearchTree sTree = new SearchTree(firstPageName, getClickableNum());
                 
 // Template if you want to use timeout
 //              System.out.println("Start");
@@ -59,11 +65,73 @@ public class clickbutton {
 //             
 //
 //              while (System.currentTimeMillis()<endTime)
+                //check if frontier is empty
                 
-                int x = getClickableNum();
-                System.out.println(x);
+                while(!sTree.isFrontierEmpty()) {
+                	Node n = sTree.popFrontier();
+        			sTree.addExplored(n.stateName);
+                	for(int i=0; i< n.clickableNum; i++) {
+                		goIndex(i);
+                		//for error
+                		try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+                		if(!sTree.isExploredNode(getName())) {
+                			Node newNode = new Node(getName(),getClickableNum(),n ,i);
+                			sTree.pushFrontier(newNode);
+                		}
+                		goNode(sTree, n);
+                	}
+                }
+                
+
            
             }
+            
+            public static void goNode(SearchTree st, Node n) {
+            	//go back to first page
+            	
+            	
+            	while(!getName().equals(st.getRoot().stateName)) {
+            		System.out.println("going back");
+            		goBack();
+            		try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            	}
+            	//wd.resetApp();
+            	try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	traverseNode(n);
+            	
+            
+            }
+            
+            private static void traverseNode(Node n) {
+            	if(n.route==-1){
+            		return;
+            	}
+            	try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	traverseNode(n.parent);
+            	goIndex(n.route);
+            }
+            
+          
 
             public static void goBack(){
                 try{
@@ -81,7 +149,7 @@ public class clickbutton {
             public static void goIndex(int i){
                 try{
                     {
-                        
+                    	System.out.println("go to "+i);
                         WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).instance("+i+")"));   
                         el.click();
             
@@ -99,6 +167,7 @@ public class clickbutton {
                     {
                         List<MobileElement> el = (List<MobileElement>) wd.findElements(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true)"));
                         count = el.size();
+                        System.out.println("Total clickable "+count);
                         return count;
                     }
                         }catch(Exception e)
