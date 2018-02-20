@@ -74,7 +74,7 @@ public class clickbutton {
                 		goIndex(i);
                 		//for error
                 		try {
-							Thread.sleep(100);
+							Thread.sleep(10);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -99,7 +99,7 @@ public class clickbutton {
             		System.out.println("going back");
             		goBack();
             		try {
-						Thread.sleep(100);
+						Thread.sleep(10);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -107,7 +107,7 @@ public class clickbutton {
             	}
             	//wd.resetApp();
             	try {
-					Thread.sleep(100);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -122,7 +122,7 @@ public class clickbutton {
             		return;
             	}
             	try {
-					Thread.sleep(100);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -185,7 +185,8 @@ public class clickbutton {
                         
                         String name = wd.getPageSource();
                         int hashed = name.hashCode();
-                        answer = Integer.toString(hashed);                  
+                        answer = Integer.toString(hashed);
+                        System.out.println(name);
                         return answer;
             
                     }
