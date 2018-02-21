@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.lang.Double;
 import java.util.*;
 
@@ -38,8 +40,8 @@ public class clickbutton {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setCapability("appium-version", "1.7.2");
                 capabilities.setCapability("platformName", "Android");
-                capabilities.setCapability("platformVersion", "6.0");
-                capabilities.setCapability("deviceName", "YFBDU15519002831");
+                capabilities.setCapability("platformVersion", "6.0.1");
+                capabilities.setCapability("deviceName", "Galaxy J7");
                 capabilities.setCapability("unicodeKeyboard", "true");                
                 capabilities.setCapability("app", "C:/Users/Chollsong212/Documents/SeniorProject/Senior/Senior/apk/com.top.android.boost.apk");
                 capabilities.setCapability("fullReset", "true");
@@ -87,7 +89,7 @@ public class clickbutton {
                 	}
                 }
                 
-
+                System.out.println("test is over");
            
             }
             
@@ -180,10 +182,12 @@ public class clickbutton {
             //if it error return ERROR:name
             public static String getName(){
                 String answer = "ERROR:name";
+                
                 try{
                     {
                         
                         String name = wd.getPageSource();
+                        name = parseNameRegex(name);
                         int hashed = name.hashCode();
                         answer = Integer.toString(hashed);
                         System.out.println(name);
@@ -197,8 +201,23 @@ public class clickbutton {
                 return answer;
             }
             
+            private static String parseNameRegex(String s) {
+            	String name = "";
+                String pattern = "<android\\.[a-zA-Z0-9]*\\.[a-zA-Z0-9]*\\s";
+                Pattern r = Pattern.compile(pattern);
+                Matcher m = r.matcher(s);
+                while (m.find()) {
+                	   System.out.println(m.group());
+                	   name = name + m.group();
+                }
+                if(name.equals("")) {
+                	System.out.println("ERROR:regex parse");
+                	return "ERROR";
+                }else {
+                	return name;
+                }
+            	
+            }
             
-            
-                
 }
                     
