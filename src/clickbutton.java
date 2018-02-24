@@ -76,7 +76,7 @@ public class clickbutton {
                 		goIndex(i);
                 		//for error
                 		try {
-							Thread.sleep(10);
+							Thread.sleep(2000);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -85,6 +85,9 @@ public class clickbutton {
                 			Node newNode = new Node(getName(),getClickableNum(),n ,i);
                 			System.out.println("frontier name is: "+newNode.stateName);
                 			sTree.pushFrontier(newNode);
+                		}else {
+                			System.out.println("at explored");
+                			System.out.println(getName());
                 		}
                 		goNode(sTree, n);
                 	}
@@ -97,24 +100,24 @@ public class clickbutton {
             public static void goNode(SearchTree st, Node n) {
             	//go back to first page
             	
-            	/*
-            	while(!getName().equals(st.getRoot().stateName)) {
+            	while(!Utilities.isSimilar(getName(), st.getRoot().stateName)) {
+            	//while(!getName().equals(st.getRoot().stateName)) {
             		System.out.println("going back");
             		goBack();
             		try {
-						Thread.sleep(100);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-            	}*/
-            	wd.resetApp();
+            	}
+            	/*wd.resetApp();
             	try {
-					Thread.sleep(500);
+					Thread.sleep(10000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
             	traverseNode(n);
             	
             
@@ -122,10 +125,11 @@ public class clickbutton {
             
             private static void traverseNode(Node n) {
             	if(n.route==-1){
+            		System.out.println("At root");
             		return;
             	}
             	try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -189,10 +193,11 @@ public class clickbutton {
                     {
                         
                         String name = wd.getPageSource();
-                        name = parseNameRegex(name);
-                        int hashed = name.hashCode();
-                        answer = Integer.toString(hashed);
-                        return answer;
+                      //  name = Utilities.parseNameRegex(name);
+                      //  int hashed = name.hashCode();
+                        //answer = Integer.toString(hashed);
+                        //return answer;
+                        return name;
             
                     }
                         }catch(Exception e)
@@ -202,23 +207,7 @@ public class clickbutton {
                 return answer;
             }
             
-            private static String parseNameRegex(String s) {
-            	String name = "";
-                String pattern = "<android\\.[a-zA-Z0-9]*\\.[a-zA-Z0-9]*\\s";
-                Pattern r = Pattern.compile(pattern);
-                Matcher m = r.matcher(s);
-                while (m.find()) {
-                	 //  System.out.println(m.group());
-                	   name = name + m.group();
-                }
-                if(name.equals("")) {
-                	System.out.println("ERROR:regex parse");
-                	return "ERROR";
-                }else {
-                	return name;
-                }
-            	
-            }
+            
             
 }
                     
