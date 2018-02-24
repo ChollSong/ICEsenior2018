@@ -43,14 +43,14 @@ public class clickbutton {
                 capabilities.setCapability("platformVersion", "6.0.1");
                 capabilities.setCapability("deviceName", "Galaxy J7");
                 capabilities.setCapability("unicodeKeyboard", "true");                
-                capabilities.setCapability("app", "C:/Users/Chollsong212/Documents/SeniorProject/Senior/Senior/apk/com.top.android.boost.apk");
+                capabilities.setCapability("app", "C:/Users/Chollsong212/Documents/SeniorProject/Senior/Senior/apk/ApiDemos-debug.apk");
                 capabilities.setCapability("fullReset", "true");
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 
                 String firstPageName = getName();
-                System.out.println(firstPageName);
-                System.out.println(getClickableNum());
+                System.out.println("firstPage name is: "+firstPageName);
+                System.out.println(getClickableNum()+" possible ways to go");
                 //create a search Tree
                 SearchTree sTree = new SearchTree(firstPageName, getClickableNum());
                 
@@ -83,6 +83,7 @@ public class clickbutton {
 						}
                 		if(!sTree.isExploredNode(getName())) {
                 			Node newNode = new Node(getName(),getClickableNum(),n ,i);
+                			System.out.println("frontier name is: "+newNode.stateName);
                 			sTree.pushFrontier(newNode);
                 		}
                 		goNode(sTree, n);
@@ -96,20 +97,20 @@ public class clickbutton {
             public static void goNode(SearchTree st, Node n) {
             	//go back to first page
             	
-            	
+            	/*
             	while(!getName().equals(st.getRoot().stateName)) {
             		System.out.println("going back");
             		goBack();
             		try {
-						Thread.sleep(10);
+						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-            	}
-            	//wd.resetApp();
+            	}*/
+            	wd.resetApp();
             	try {
-					Thread.sleep(10);
+					Thread.sleep(500);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -124,7 +125,7 @@ public class clickbutton {
             		return;
             	}
             	try {
-					Thread.sleep(10);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -140,6 +141,7 @@ public class clickbutton {
                     {
                         
                         ((AndroidDriver) wd).pressKeyCode(AndroidKeyCode.BACK);
+                        Thread.sleep(100);
             
                     }
                         }catch(Exception e)
@@ -190,7 +192,6 @@ public class clickbutton {
                         name = parseNameRegex(name);
                         int hashed = name.hashCode();
                         answer = Integer.toString(hashed);
-                        System.out.println(name);
                         return answer;
             
                     }
@@ -207,7 +208,7 @@ public class clickbutton {
                 Pattern r = Pattern.compile(pattern);
                 Matcher m = r.matcher(s);
                 while (m.find()) {
-                	   System.out.println(m.group());
+                	 //  System.out.println(m.group());
                 	   name = name + m.group();
                 }
                 if(name.equals("")) {
