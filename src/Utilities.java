@@ -20,6 +20,30 @@ public class Utilities {
         }
     	
     }
+	//will have to modify clickableCount to consider NAF
+	public static int clickableCount(String s) {
+		int i =0;
+		 String pattern = "<android.*clickable=\"true\".*>";
+	     Pattern r = Pattern.compile(pattern);
+	     Matcher m = r.matcher(s);
+	     while (m.find()) {
+	        //  System.out.println(m.group());
+	        i++;
+	     }
+		return i;
+		
+	}
+	
+	public static String getPackageName(String s) {
+		String packageName ="";
+		String pattern = "package=[\".a-zA-Z0-9-]*";
+	    Pattern r = Pattern.compile(pattern);
+	    Matcher m = r.matcher(s);
+	    if(m.find()) {
+	        packageName = packageName + m.group();
+	    }
+	    return packageName;
+	}
 	
 	//LevenShteinDistance
 	//will need to see if 80% of the total length of string
@@ -67,8 +91,9 @@ public class Utilities {
 		boolean similarity = false;
 		float maxLength = Math.max(s1.length(), s2.length());
 		float levenDis = levenshteinDistance(s1,s2);
+		System.out.println("Leven Distance is: "+levenDis/maxLength);
 		if(0.05> levenDis/maxLength) {
-			System.out.println("Leven Distance is: "+levenDis/maxLength);
+			
 			similarity = true;
 			System.out.println("similar");
 		}else {
@@ -84,20 +109,19 @@ public class Utilities {
 	
 public static void main(String[] args) {
 		
-		String s = "<hierarchy rotation=\"0\">\r\n" + 
-				"    <android.widget.FrameLayout index=\"0\" text=\"\" class=\"android.widget.FrameLayout\" package=\"com.top.android.boost\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,0][1080,1812]\" resource-id=\"\" instance=\"0\">\r\n " + 
-				"        <android.widget.LinearLayout index=\"0\" text=\"\" class=\"android.widget.LinearLayout\" package=\"com.top.android.boost\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,0][1080,1812]\" resource-id=\"\" instance=\"0\">\r\n " + 
-				"            <android.widget.FrameLayout index=\"0\" text=\"\" class=\"android.widget.FrameLayout\" package=\"com.top.android.boost\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,72][1080,1812]\" resource-id=\"android:id/content\" instance=\"1\">\r\n " + 
-				"                <android.widget.RelativeLayout index=\"0\" text=\"\" class=\"android.widget.RelativeLayout\" package=\"com.top.android.boost\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,72][1080,1812]\" resource-id=\"\" instance=\"0\">\r\n " + 
-				"                    <android.widget.LinearLayout index=\"0\" text=\"\" class=\"android.widget.LinearLayout\" package=\"com.top.android.boost\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"true\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,72][1080,216]\" resource-id=\"com.top.android.boost:id/cn\" instance=\"1\">\r\n " + 
-				"                        <android.widget.ImageView index=\"0\" text=\"\" class=\"android.widget.ImageView\" package=\"com.top.android.boost\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[30,120][78,168]\" resource-id=\"com.top.android.boost:id/co\" instance=\"0\"/>\r\n " + 
-				"                        <android.widget.TextView index=\"1\" text=\"Set up\" class=\"android.widget.TextView\" package=\"com.top.android.boost\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[108,107][261,180]\" resource-id=\"\" instance=\"0\"/>\r\n " + 
-				"                    </android.widget.LinearLayout>\r\n" + 
-				"\r\n" + 
-				" <android.view.View index=\"1\" text=\"\" class=\"android.view.View\" package=\"com.top.android.boost\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[48,365][1080,366]\" resource-id=\"com.top.android.boost:id/gu\" instance=\"0\"/>";
+		String s = "<android.widget.FrameLayout index=\"0\" text=\"\" class=\"android.widget.FrameLayout\" package=\"com.jvstudios.claptofindmyphone\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" instance=\"0\">\r\n" + 
+				"        <android.widget.LinearLayout index=\"0\" text=\"\" class=\"android.widget.LinearLayout\" package=\"com.jvstudios.claptofindmyphone\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" instance=\"0\">\r\n" + 
+				"            <android.widget.FrameLayout index=\"0\" text=\"\" class=\"android.widget.FrameLayout\" package=\"com.jvstudios.claptofindmyphone\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" instance=\"1\">\r\n" + 
+				"                <android.widget.RelativeLayout index=\"0\" text=\"\" class=\"android.widget.RelativeLayout\" package=\"com.jvstudios.claptofindmyphone\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" instance=\"0\">\r\n" + 
+				"                    <android.widget.TextView NAF=\"true\" index=\"0\" text=\"\" class=\"android.widget.TextView\" package=\"com.jvstudios.claptofindmyphone\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"true\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" instance=\"0\"/>\r\n" + 
+				"                    <android.widget.TextView index=\"1\" text=\"Continue\" class=\"android.widget.TextView\" package=\"com.jvstudios.claptofindmyphone\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"true\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" instance=\"1\"/>\r\n" + 
+				"                </android.widget.RelativeLayout>\r\n" + 
+				"            </android.widget.FrameLayout>\r\n" + 
+				"        </android.widget.LinearLayout>\r\n" + 
+				"    </android.widget.FrameLayout>";
 		
 		
-		System.out.println(isSimilar("<android.widget.Image", "<android.widget.Line"));
+		System.out.println(getPackageName(s));
 		
 		
 		

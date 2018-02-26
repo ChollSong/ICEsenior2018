@@ -40,40 +40,49 @@ public class clickbutton {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setCapability("appium-version", "1.7.2");
                 capabilities.setCapability("platformName", "Android");
-                capabilities.setCapability("platformVersion", "6.0.1");
-                capabilities.setCapability("deviceName", "Galaxy J7");
+                capabilities.setCapability("platformVersion", "4.2.2");
+                capabilities.setCapability("deviceName", "J7C1V1R1RL056540");
                 capabilities.setCapability("unicodeKeyboard", "true");                
-                capabilities.setCapability("app", "C:/Users/Chollsong212/Documents/SeniorProject/Senior/Senior/apk/ApiDemos-debug.apk");
+                capabilities.setCapability("app", "G:/APK/#1-100/com.jvstudios.claptofindmyphone.apk");
                 capabilities.setCapability("fullReset", "true");
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 
+           
+                //might need to change to something else if decide to hash current name
+                long times = 2;
+                times = times*60000;
+                long startTime = System.currentTimeMillis();
+                long endTime = startTime+times;
+                //for stalling until start
+                //might need to set timeout so bounch out of app
+                while (System.currentTimeMillis()<endTime || Utilities.clickableCount(getName())<1) {
+       			 try {
+					Thread.sleep(100);
+       			 } catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+       			 }
+       		 	}
+                
                 String firstPageName = getName();
                 System.out.println("firstPage name is: "+firstPageName);
                 System.out.println(getClickableNum()+" possible ways to go");
+                //need code to determine if the code is from somewhere else
                 //create a search Tree
-                SearchTree sTree = new SearchTree(firstPageName, getClickableNum());
+                SearchTree sTree = new SearchTree(firstPageName, getClickableNum(), Utilities.getPackageName(firstPageName));
                 
 // Template if you want to use timeout
-//              System.out.println("Start");
-//              System.out.print("Input times : ");
-
-//              Scanner scanner = new Scanner(System.in);
-//              long times = scanner.nextLong();
-//              times = times*60000;
-//              long startTime = System.currentTimeMillis();
-//              long endTime = startTime+times;
-//
-//             
-//
-//              while (System.currentTimeMillis()<endTime)
-                //check if frontier is empty
                 
+
                 while(!sTree.isFrontierEmpty()) {
+                	System.out.println("Processing");
                 	Node n = sTree.popFrontier();
         			sTree.addExplored(n.stateName);
                 	for(int i=0; i< n.clickableNum; i++) {
                 		goIndex(i);
+                		String currentName = getName();
+                		int clickableNum = getClickableNum();
                 		//for error
                 		try {
 							Thread.sleep(2000);
@@ -81,8 +90,14 @@ public class clickbutton {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-                		if(!sTree.isExploredNode(getName())) {
-                			Node newNode = new Node(getName(),getClickableNum(),n ,i);
+                		if(!sTree.isExploredNode(currentName)) {
+                			//for handling cases where exit app
+                			
+                			if(Utilities.getPackageName(getName()).equals(Utilities.getPackageName(sTree.getRoot().stateName))) {
+                				currentName = "OUTSIDE APP";
+                				clickableNum = 0;
+                			}
+                			Node newNode = new Node(currentName,clickableNum,n ,i);
                 			System.out.println("frontier name is: "+newNode.stateName);
                 			sTree.pushFrontier(newNode);
                 		}else {
@@ -171,6 +186,7 @@ public class clickbutton {
             //if it error return -1
             public static int getClickableNum(){
                 int count = -1;
+                System.out.println("getting clickable Num");
                 try{
                     {
                         List<MobileElement> el = (List<MobileElement>) wd.findElements(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true)"));
@@ -197,6 +213,8 @@ public class clickbutton {
                       //  int hashed = name.hashCode();
                         //answer = Integer.toString(hashed);
                         //return answer;
+                        
+                        
                         return name;
             
                     }

@@ -7,6 +7,7 @@ public class Node{
 		String stateName;
 		//route
 		int route = -1;
+		//name
 		public Node(String name, int childNum, Node parent) {
 			//declare structure of the node
 			clickableNum = childNum;
@@ -19,6 +20,14 @@ public class Node{
 		
 		public String getName() {
 			return stateName;
+		}
+		
+		public int getClickableNum(){
+			return clickableNum;
+		}
+		
+		public void setClickableNum(int x){
+			clickableNum = x;
 		}
 		
 		public Node(String name, int childNum, Node parent, int route) {

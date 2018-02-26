@@ -7,10 +7,12 @@ import java.util.regex.Pattern;
 public class SearchTree {
 	
 	Node root;
+	String packageName = "";
 	ArrayList<String> exploredStateNames = new ArrayList<String>();
 	Stack<Node> frontierStates = new Stack<Node>();
 	
-	public SearchTree(String name, int childNum) {
+	public SearchTree(String name, int childNum, String packageName) {
+		this.packageName=packageName;
 		root = new Node(name, childNum, null);
 		System.out.println(root.stateName);
 		frontierStates.add(root);
@@ -55,6 +57,9 @@ public class SearchTree {
 		return root;
 	}
 	
+	public String getPackageName() {
+		return packageName;
+	}
 	
 	
 		
