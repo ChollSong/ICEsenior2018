@@ -43,27 +43,42 @@ public class clickbutton {
                 capabilities.setCapability("platformVersion", "4.2.2");
                 capabilities.setCapability("deviceName", "J7C1V1R1RL056540");
                 capabilities.setCapability("unicodeKeyboard", "true");                
-                capabilities.setCapability("app", "G:/APK/#1-100/com.jvstudios.claptofindmyphone.apk");
+                capabilities.setCapability("app", "G:/APK/#1-100/com.apps.go.clean.boost.master.apk");
                 capabilities.setCapability("fullReset", "true");
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 
            
                 //might need to change to something else if decide to hash current name
-                long times = 2;
-                times = times*60000;
+                long times = 5000;
+                //times = times*60000;
                 long startTime = System.currentTimeMillis();
                 long endTime = startTime+times;
                 //for stalling until start
                 //might need to set timeout so bounch out of app
                 while (System.currentTimeMillis()<endTime || Utilities.clickableCount(getName())<1) {
        			 try {
+       				 System.out.println("Count of clickables"+Utilities.clickableCount(getName()));
 					Thread.sleep(100);
        			 } catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
        			 }
        		 	}
+                
+                if(Utilities.isFirstPage(getName())) {
+                try {
+         
+                	WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).textMatches(\""+
+                	Utilities.foundString(getName())
+                			+"\")"));
+					Thread.sleep(100);
+      			 } catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+      			 }
+                }
+                
                 
                 String firstPageName = getName();
                 System.out.println("firstPage name is: "+firstPageName);

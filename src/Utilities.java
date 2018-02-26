@@ -34,6 +34,26 @@ public class Utilities {
 		
 	}
 	
+	public static boolean isFirstPage(String s) {
+		 String pattern = "YES|Yes|Accept|ACCEPT|NEXT|Next|AGREE|Agree|START|Start";
+	     Pattern r = Pattern.compile(pattern);
+	     Matcher m = r.matcher(s);
+		boolean status = false;
+		status = clickableCount(s)<3 && m.find();
+		return status;
+	}
+	
+	public static String foundString(String s) {
+		 String txt="";
+		 String pattern = "YES|Yes|Accept|ACCEPT|NEXT|Next|AGREE|Agree|START|Start";
+	     Pattern r = Pattern.compile(pattern);
+	     Matcher m = r.matcher(s);
+	     if(m.find()) {
+	    	 txt=m.group();
+	     }
+	     return txt;
+	}
+	
 	public static String getPackageName(String s) {
 		String packageName ="";
 		String pattern = "package=[\".a-zA-Z0-9-]*";
@@ -102,6 +122,9 @@ public class Utilities {
 		
 		return similarity;
 	}
+	
+	
+	
 	
 	
 	
