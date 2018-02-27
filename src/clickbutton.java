@@ -72,6 +72,7 @@ public class clickbutton {
                 	WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).textMatches(\""+
                 	Utilities.foundString(getName())
                 			+"\")"));
+                	el.click();
 					Thread.sleep(100);
       			 } catch (InterruptedException e) {
 					// TODO Auto-generated catch block
