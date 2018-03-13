@@ -7,12 +7,16 @@ public class Node{
 		String stateName;
 		//route
 		int route = -1;
-		//name
+		//depth
+		int depth = 0;
 		public Node(String name, int childNum, Node parent) {
 			//declare structure of the node
 			clickableNum = childNum;
 			stateName = name;
 			this.parent = parent;
+			if(parent != null) {
+				depth = parent.depth+1;
+			}
 			
 			System.out.println(stateName);
 		}

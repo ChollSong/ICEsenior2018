@@ -48,37 +48,8 @@ public class clickbutton {
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 
-           
-                //might need to change to something else if decide to hash current name
-                long times = 5000;
-                //times = times*60000;
-                long startTime = System.currentTimeMillis();
-                long endTime = startTime+times;
-                //for stalling until start
-                //might need to set timeout so bounch out of app
-                while (System.currentTimeMillis()<endTime || Utilities.clickableCount(getName())<1) {
-       			 try {
-       				 System.out.println("Count of clickables"+Utilities.clickableCount(getName()));
-					Thread.sleep(100);
-       			 } catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-       			 }
-       		 	}
-                
-                if(Utilities.isFirstPage(getName())) {
-                try {
-         
-                	WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).textMatches(\""+
-                	Utilities.foundString(getName())
-                			+"\")"));
-                	el.click();
-					Thread.sleep(100);
-      			 } catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-      			 }
-                }
+                //initialize the term
+                start();
                 
                 
                 String firstPageName = getName();
@@ -130,18 +101,34 @@ public class clickbutton {
             
             public static void goNode(SearchTree st, Node n) {
             	//go back to first page
-            	
+            	int count = 0;
             	while(!Utilities.isSimilar(getName(), st.getRoot().stateName)) {
             	//while(!getName().equals(st.getRoot().stateName)) {
+            		if(count>n.depth+1) {
+            			System.out.println("reseting");
+            			wd.resetApp();
+                    	try {
+        					Thread.sleep(3000);
+        				} catch (InterruptedException e) {
+        					// TODO Auto-generated catch block
+        					e.printStackTrace();
+        				}
+                    	start();
+                    	break;
+            		}
             		System.out.println("going back");
             		goBack();
+            		count++;
             		try {
+            			//can be set for longer
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+            		
             	}
+            	
             	/*wd.resetApp();
             	try {
 					Thread.sleep(10000);
@@ -239,6 +226,39 @@ public class clickbutton {
                             System.out.println("ERROR:name");
                         }
                 return answer;
+            }
+            //resets the app
+            public static void start() {
+            	//might need to change to something else if decide to hash current name
+                long times = 5000;
+                //times = times*60000;
+                long startTime = System.currentTimeMillis();
+                long endTime = startTime+times;
+                //for stalling until start
+                //might need to set timeout so bounch out of app
+                while (System.currentTimeMillis()<endTime || Utilities.clickableCount(getName())<1) {
+       			 try {
+       				 System.out.println("Count of clickables"+Utilities.clickableCount(getName()));
+					Thread.sleep(100);
+       			 } catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+       			 }
+       		 	}
+                
+                if(Utilities.isFirstPage(getName())) {
+                try {
+         
+                	WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).textMatches(\""+
+                	Utilities.foundString(getName())
+                			+"\")"));
+                	el.click();
+					Thread.sleep(100);
+      			 } catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+      			 }
+                }
             }
             
             
