@@ -112,7 +112,7 @@ public class Utilities {
 		float maxLength = Math.max(s1.length(), s2.length());
 		float levenDis = levenshteinDistance(s1,s2);
 		System.out.println("Leven Distance is: "+levenDis/maxLength);
-		if(0.05> levenDis/maxLength) {
+		if(0.1> levenDis/maxLength) {
 			
 			similarity = true;
 			System.out.println("similar");

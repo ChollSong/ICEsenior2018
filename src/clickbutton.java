@@ -40,11 +40,11 @@ public class clickbutton {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setCapability("appium-version", "1.7.2");
                 capabilities.setCapability("platformName", "Android");
-                capabilities.setCapability("platformVersion", "4.2.2");
-                capabilities.setCapability("deviceName", "J7C1V1R1RL056540");
+                capabilities.setCapability("platformVersion", "6.0");
+                capabilities.setCapability("deviceName", "YFBDU15519002831");
                 capabilities.setCapability("unicodeKeyboard", "true");                
                 capabilities.setCapability("app", "G:/APK/#1-100/com.apps.go.clean.boost.master.apk");
-                capabilities.setCapability("fullReset", "true");
+                capabilities.setCapability("fullReset", "false");
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 
@@ -58,6 +58,7 @@ public class clickbutton {
                 //need code to determine if the code is from somewhere else
                 //create a search Tree
                 SearchTree sTree = new SearchTree(firstPageName, getClickableNum(), Utilities.getPackageName(firstPageName));
+                System.out.println("Official package name from first page is: "+sTree.packageName);
                 
 // Template if you want to use timeout
                 
@@ -72,7 +73,7 @@ public class clickbutton {
                 		int clickableNum = getClickableNum();
                 		//for error
                 		try {
-							Thread.sleep(2000);
+							Thread.sleep(300);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -80,8 +81,10 @@ public class clickbutton {
                 		if(!sTree.isExploredNode(currentName)) {
                 			//for handling cases where exit app
                 			
-                			if(Utilities.getPackageName(getName()).equals(Utilities.getPackageName(sTree.getRoot().stateName))) {
+                			if(!Utilities.getPackageName(currentName).equals(sTree.packageName)) {
                 				currentName = "OUTSIDE APP";
+                				//for seeing what kind of package name it has
+                				System.out.println(Utilities.getPackageName(currentName));
                 				clickableNum = 0;
                 			}
                 			Node newNode = new Node(currentName,clickableNum,n ,i);
@@ -108,7 +111,7 @@ public class clickbutton {
             			System.out.println("reseting");
             			wd.resetApp();
                     	try {
-        					Thread.sleep(3000);
+        					Thread.sleep(300);
         				} catch (InterruptedException e) {
         					// TODO Auto-generated catch block
         					e.printStackTrace();
@@ -121,7 +124,7 @@ public class clickbutton {
             		count++;
             		try {
             			//can be set for longer
-						Thread.sleep(1000);
+						Thread.sleep(300);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -147,7 +150,7 @@ public class clickbutton {
             		return;
             	}
             	try {
-					Thread.sleep(1000);
+					Thread.sleep(500);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -163,7 +166,7 @@ public class clickbutton {
                     {
                         
                         ((AndroidDriver) wd).pressKeyCode(AndroidKeyCode.BACK);
-                        Thread.sleep(100);
+                        Thread.sleep(300);
             
                     }
                         }catch(Exception e)
@@ -236,10 +239,10 @@ public class clickbutton {
                 long endTime = startTime+times;
                 //for stalling until start
                 //might need to set timeout so bounch out of app
-                while (System.currentTimeMillis()<endTime || Utilities.clickableCount(getName())<1) {
+                while (System.currentTimeMillis()<endTime && Utilities.clickableCount(getName())<1) {
        			 try {
        				 System.out.println("Count of clickables"+Utilities.clickableCount(getName()));
-					Thread.sleep(100);
+					Thread.sleep(300);
        			 } catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -253,7 +256,7 @@ public class clickbutton {
                 	Utilities.foundString(getName())
                 			+"\")"));
                 	el.click();
-					Thread.sleep(100);
+					Thread.sleep(300);
       			 } catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

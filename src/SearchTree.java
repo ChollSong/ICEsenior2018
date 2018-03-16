@@ -37,6 +37,7 @@ public class SearchTree {
 	
 	public void addExplored(String name) {
 		this.exploredStateNames.add(name);
+		System.out.println("Total explored states: "+this.exploredStateNames.size());
 	}
 	
 	
