@@ -51,7 +51,6 @@ public class clickbutton {
                 //initialize the term
                 start();
                 
-                
                 String firstPageName = getName();
                 //int firstPageClickable = getClickableNum();
                 //replaced with utilities function instead
@@ -72,9 +71,17 @@ public class clickbutton {
                 	Node n = sTree.popFrontier();
         			sTree.addExplored(n.stateName);
                 	for(int i=0; i< n.clickableNum; i++) {
-                		goIndex(i);
-                		String currentName = getName();
-                		int clickableNum = Utilities.clickableCount(currentName);
+                		String currentName = "ErrorState";
+                		int clickableNum = 0;
+                		if(goIndex(i)) {
+                			
+                		}
+                		currentName = getName();
+                		clickableNum = Utilities.clickableCount(currentName);
+                		//limit to 15
+                		if(clickableNum>15) {
+                			clickableNum = 15;
+                		}
                 		//for error
                 		try {
 							Thread.sleep(30);
@@ -82,7 +89,7 @@ public class clickbutton {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-                		if(!sTree.isExploredNode(currentName)) {
+                		if(!sTree.isExploredNode(currentName)&&!currentName.equals("ErrorState")) {
                 			//for handling cases where exit app
                 			
                 			if(!Utilities.getPackageName(currentName).equals(sTree.packageName)) {
@@ -92,7 +99,7 @@ public class clickbutton {
                 				clickableNum = 0;
                 			}
                 			Node newNode = new Node(currentName,clickableNum,n ,i);
-                			System.out.println("frontier name is: ");
+                			
                 			System.out.println(n.clickableNum+" ways that can go");
                 			sTree.pushFrontier(newNode);
                 		}else {
@@ -180,21 +187,24 @@ public class clickbutton {
                         }
             }
 
-            public static void goIndex(int i){
+            public static boolean goIndex(int i){
                 try{
                     {
                     	System.out.println("go to "+i);
                         WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).instance("+i+")"));   
                         el.click();
+                        return true;
             
                     }
                         }catch(Exception e)
                         {
                             System.out.println("ERROR:index at: "+ i);
+                            return false;
                         }
             }
             
             //if it error return -1
+            //old function no longer in use
             public static int getClickableNum(){
                 int count = -1;
                 System.out.println("getting clickable Num");
@@ -260,11 +270,13 @@ public class clickbutton {
                 	WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).textMatches(\""+
                 	Utilities.foundString(getName())
                 			+"\")"));
-                	el.click();
+                	if(el!= null) {
+                		el.click();
+                	}
 					Thread.sleep(30);
       			 } catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+			
       			 }
                 }
             }
