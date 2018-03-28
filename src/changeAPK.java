@@ -34,7 +34,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.Double;
 import java.util.*;
-
+import java.time.LocalDateTime;
 
 
 public class changeAPK {
@@ -42,6 +42,7 @@ public class changeAPK {
      public static Long times;
      public static List<File> filesInFolder;
      public static String currentAPK;
+     
      
     public static void main(String[] args) throws MalformedURLException {
         System.out.println("test APK from x to y");
@@ -80,10 +81,13 @@ public class changeAPK {
             wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
             wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
             
+            Utilities.log(currentAPK+" start ");
             //enter test here
             String test = wd.getPageSource();
             System.out.println(test);
             //When the test end 
+            Utilities.log(currentAPK+" end ");
+            
             wd.quit();
     	}
     	    	

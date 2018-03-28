@@ -43,7 +43,7 @@ public class clickbutton {
                 capabilities.setCapability("platformVersion", "6.0");
                 capabilities.setCapability("deviceName", "YFBDU15519002831");
                 capabilities.setCapability("unicodeKeyboard", "true");                
-                capabilities.setCapability("app", "G:/APK/#1-100/com.apps.go.clean.boost.master.apk");
+                capabilities.setCapability("app", "G:/APK/#1-100/com.color.flashlight.alert.apk");
                 capabilities.setCapability("fullReset", "false");
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -53,11 +53,15 @@ public class clickbutton {
                 
                 
                 String firstPageName = getName();
+                //int firstPageClickable = getClickableNum();
+                //replaced with utilities function instead
+                int firstPageClickable = Utilities.clickableCount(firstPageName);
+                
                 System.out.println("firstPage name is: "+firstPageName);
-                System.out.println(getClickableNum()+" possible ways to go");
+                System.out.println(firstPageClickable+" possible ways to go");
                 //need code to determine if the code is from somewhere else
                 //create a search Tree
-                SearchTree sTree = new SearchTree(firstPageName, getClickableNum(), Utilities.getPackageName(firstPageName));
+                SearchTree sTree = new SearchTree(firstPageName, firstPageClickable, Utilities.getPackageName(firstPageName));
                 System.out.println("Official package name from first page is: "+sTree.packageName);
                 
 // Template if you want to use timeout
@@ -70,10 +74,10 @@ public class clickbutton {
                 	for(int i=0; i< n.clickableNum; i++) {
                 		goIndex(i);
                 		String currentName = getName();
-                		int clickableNum = getClickableNum();
+                		int clickableNum = Utilities.clickableCount(currentName);
                 		//for error
                 		try {
-							Thread.sleep(300);
+							Thread.sleep(30);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -84,15 +88,16 @@ public class clickbutton {
                 			if(!Utilities.getPackageName(currentName).equals(sTree.packageName)) {
                 				currentName = "OUTSIDE APP";
                 				//for seeing what kind of package name it has
-                				System.out.println(Utilities.getPackageName(currentName));
+                				System.out.println(currentName);
                 				clickableNum = 0;
                 			}
                 			Node newNode = new Node(currentName,clickableNum,n ,i);
-                			System.out.println("frontier name is: "+newNode.stateName);
+                			System.out.println("frontier name is: ");
+                			System.out.println(n.clickableNum+" ways that can go");
                 			sTree.pushFrontier(newNode);
                 		}else {
                 			System.out.println("at explored");
-                			System.out.println(getName());
+                			System.out.println(currentName);
                 		}
                 		goNode(sTree, n);
                 	}
@@ -111,7 +116,7 @@ public class clickbutton {
             			System.out.println("reseting");
             			wd.resetApp();
                     	try {
-        					Thread.sleep(300);
+        					Thread.sleep(30);
         				} catch (InterruptedException e) {
         					// TODO Auto-generated catch block
         					e.printStackTrace();
@@ -124,7 +129,7 @@ public class clickbutton {
             		count++;
             		try {
             			//can be set for longer
-						Thread.sleep(300);
+						Thread.sleep(30);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -150,7 +155,7 @@ public class clickbutton {
             		return;
             	}
             	try {
-					Thread.sleep(500);
+					Thread.sleep(30);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -166,7 +171,7 @@ public class clickbutton {
                     {
                         
                         ((AndroidDriver) wd).pressKeyCode(AndroidKeyCode.BACK);
-                        Thread.sleep(300);
+                        Thread.sleep(30);
             
                     }
                         }catch(Exception e)
@@ -185,7 +190,7 @@ public class clickbutton {
                     }
                         }catch(Exception e)
                         {
-                            System.out.println("ERROR:index");
+                            System.out.println("ERROR:index at: "+ i);
                         }
             }
             
@@ -249,14 +254,14 @@ public class clickbutton {
        			 }
        		 	}
                 
-                if(Utilities.isFirstPage(getName())) {
+                if(Utilities.isLoadPage(getName())) {
                 try {
          
                 	WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).textMatches(\""+
                 	Utilities.foundString(getName())
                 			+"\")"));
                 	el.click();
-					Thread.sleep(300);
+					Thread.sleep(30);
       			 } catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

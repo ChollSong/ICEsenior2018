@@ -27,6 +27,9 @@ public class SearchTree {
 			return true;
 		}*/
 		for(String s: exploredStateNames) {
+			if(s.equals(name)) {
+				return true;
+			}
 			if(Utilities.isSimilar(s, name)) {
 				return true;
 			}
