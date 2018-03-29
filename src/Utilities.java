@@ -1,5 +1,6 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.io.*;
 import java.util.*;
@@ -134,7 +135,7 @@ public class Utilities {
     public static void log(String info){
         try{
             BufferedWriter bw = new BufferedWriter(new FileWriter("log.txt", true));
-            String now = LocalDateTime.now().toString();
+            String now = LocalDateTime.now(Clock.systemUTC()).toString();
             System.out.println(now);
             bw.append(info+" "+now);
             bw.newLine();
@@ -152,7 +153,7 @@ public static void main(String[] args) {
 		System.out.println(packageName.substring(9, packageName.length()-1));
 		//System.out.println(clickableCount(s));
 		
-		
+		log("Util Testing");
 		
 	}
 }

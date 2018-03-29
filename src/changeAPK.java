@@ -62,6 +62,14 @@ public class changeAPK {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
+        try {
+			BasicServer.getHTML("http://pioneer.chula.ac.th");
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			Utilities.log("error pioneer start marking for "+currentAPK);
+			e1.printStackTrace();
+		}
     	
     	for(int j = x-1 ;j < y ;j++){
     	
@@ -91,7 +99,7 @@ public class changeAPK {
     		
              
             
-            Utilities.log(currentAPK+" start ");
+            Utilities.log(currentAPK+" start");
             //enter test here
 
             //initialize the term
@@ -158,11 +166,20 @@ public class changeAPK {
             
             System.out.println("test is over");
             //When the test end 
-            Utilities.log(currentFile.getName()+" end ");
+            Utilities.log(currentAPK+" end");
      
             wd.removeApp(currentFile.getName().substring(0, currentFile.getName().length()-4));
             System.out.println("appExit");
             wd.quit();
+            
+            
+            try {
+    			BasicServer.getHTML("http://pioneer.chula.ac.th");
+    		} catch (Exception e1) {
+    			// TODO Auto-generated catch block
+    			Utilities.log("error pioneer end marking for "+currentAPK);
+    			e1.printStackTrace();
+    		}
     	}
     	    	
     }
