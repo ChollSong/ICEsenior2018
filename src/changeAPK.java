@@ -54,7 +54,7 @@ public class changeAPK {
         int y = scanner2.nextInt();
         
         try {
-			filesInFolder = Files.walk(Paths.get("/Volumes/Senior/APK/1-100"))
+			filesInFolder = Files.walk(Paths.get("G:\\APK\\#1-100"))
 			        .filter(Files::isRegularFile)
 			        .map(Path::toFile)
 			        .collect(Collectors.toList());
@@ -67,7 +67,7 @@ public class changeAPK {
     	
 				File currentFile = filesInFolder.get(j);
 				//alter this
-				currentAPK = "/Volumes/Senior/APK/1-100/" + currentFile.getName();
+				currentAPK = "G:\\APK\\#1-100\\" + currentFile.getName();
 			
     		System.out.println(currentAPK);
     		try {
@@ -78,12 +78,14 @@ public class changeAPK {
                  capabilities.setCapability("deviceName", "YFBDU15519002831");
                  capabilities.setCapability("unicodeKeyboard", "true");                
                  capabilities.setCapability("app", currentAPK);
+                 capabilities.setCapability("autoGrantPermissions", "true");
                  capabilities.setCapability("fullReset", "false");
                  wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                  wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     		}catch(Exception e){
     			Utilities.log(currentFile+"APK ERROR");
     			System.out.println("error in loading file");
+    			continue;
     		}
     		
     		
@@ -128,7 +130,7 @@ public class changeAPK {
             		}
             		//for error
             		try {
-						Thread.sleep(30);
+						Thread.sleep(300);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -159,6 +161,7 @@ public class changeAPK {
             Utilities.log(currentFile.getName()+" end ");
      
             wd.removeApp(currentFile.getName().substring(0, currentFile.getName().length()-4));
+            System.out.println("appExit");
             wd.quit();
     	}
     	    	
@@ -173,7 +176,7 @@ public class changeAPK {
     			System.out.println("reseting");
     			wd.resetApp();
             	try {
-					Thread.sleep(30);
+					Thread.sleep(300);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -186,7 +189,7 @@ public class changeAPK {
     		count++;
     		try {
     			//can be set for longer
-				Thread.sleep(30);
+				Thread.sleep(300);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -212,7 +215,7 @@ public class changeAPK {
     		return;
     	}
     	try {
-			Thread.sleep(30);
+			Thread.sleep(300);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -228,7 +231,7 @@ public class changeAPK {
             {
                 
                 ((AndroidDriver) wd).pressKeyCode(AndroidKeyCode.BACK);
-                Thread.sleep(30);
+                Thread.sleep(300);
     
             }
                 }catch(Exception e)

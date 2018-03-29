@@ -43,8 +43,9 @@ public class clickbutton {
                 capabilities.setCapability("platformVersion", "6.0");
                 capabilities.setCapability("deviceName", "YFBDU15519002831");
                 capabilities.setCapability("unicodeKeyboard", "true");                
-                capabilities.setCapability("app", "G:/APK/#1-100/com.color.flashlight.alert.apk");
+                capabilities.setCapability("app", "G:/APK/#1-100/app.qrcode.apk");
                 capabilities.setCapability("fullReset", "false");
+                capabilities.setCapability("autoGrantPermissions", "true");
                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 
