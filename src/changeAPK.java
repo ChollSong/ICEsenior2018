@@ -167,10 +167,15 @@ public class changeAPK {
             System.out.println("test is over");
             //When the test end 
             Utilities.log(currentAPK+" end");
-     
-            wd.removeApp(currentFile.getName().substring(0, currentFile.getName().length()-4));
-            System.out.println("appExit");
-            wd.quit();
+            
+            try {
+            	wd.removeApp(currentFile.getName().substring(0, currentFile.getName().length()-4));
+                System.out.println("appExit");
+                wd.quit();
+            }catch(Exception e) {
+            	System.out.println("error:EXIT");
+            }
+            
             
             
             try {
@@ -191,11 +196,12 @@ public class changeAPK {
     	//while(!getName().equals(st.getRoot().stateName)) {
     		if(count>n.depth+1) {
     			System.out.println("reseting");
-    			wd.resetApp();
             	try {
+            		wd.resetApp();
 					Thread.sleep(300);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
+					System.out.println("Error:Reset");
 					e.printStackTrace();
 				}
             	start();

@@ -144,6 +144,8 @@ public class Utilities {
             System.out.println("error in logging");
         }
     }
+    
+
 
 public static void main(String[] args) {
 		
@@ -152,6 +154,8 @@ public static void main(String[] args) {
 		//exaple to use in order to get the package name out
 		System.out.println(packageName.substring(9, packageName.length()-1));
 		//System.out.println(clickableCount(s));
+		
+		//G:\APK\#1-100\app.qrcode.apk
 		
 		log("Util Testing");
 		
