@@ -63,13 +63,11 @@ public class changeAPK {
 			e.printStackTrace();
 		}
         
-        try {
-			BasicServer.getHTML("http://pioneer.chula.ac.th");
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			Utilities.log("error pioneer start marking for "+currentAPK);
-			e1.printStackTrace();
-		}
+       try {
+    	   HTTPMarker.markHTML();
+       }catch(Exception e) {
+    	   Utilities.log("Error applying start marker");
+       }
     	
     	for(int j = x-1 ;j < y ;j++){
     	
@@ -88,6 +86,7 @@ public class changeAPK {
                  capabilities.setCapability("app", currentAPK);
                  capabilities.setCapability("autoGrantPermissions", "true");
                  capabilities.setCapability("fullReset", "false");
+                 
                  wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
                  wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     		}catch(Exception e){
@@ -179,12 +178,10 @@ public class changeAPK {
             
             
             try {
-    			BasicServer.getHTML("http://pioneer.chula.ac.th");
-    		} catch (Exception e1) {
-    			// TODO Auto-generated catch block
-    			Utilities.log("error pioneer end marking for "+currentAPK);
-    			e1.printStackTrace();
-    		}
+         	   HTTPMarker.markHTML();
+            }catch(Exception e) {
+         	   Utilities.log("Error applying end marker");
+            }
     	}
     	    	
     }
