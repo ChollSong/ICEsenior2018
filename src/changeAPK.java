@@ -199,7 +199,7 @@ public class changeAPK {
             	try {
             		wd.resetApp();
 					Thread.sleep(300);
-				} catch (InterruptedException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println("Error:Reset");
 					e.printStackTrace();
