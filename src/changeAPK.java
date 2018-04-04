@@ -68,8 +68,10 @@ public class changeAPK {
        }catch(Exception e) {
     	   Utilities.log("Error applying start marker");
        }
-    	
+       //code starting 
+      
     	for(int j = x-1 ;j < y ;j++){
+    		
     	
 				File currentFile = filesInFolder.get(j);
 				//alter this
@@ -91,14 +93,18 @@ public class changeAPK {
                  wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     		}catch(Exception e){
     			Utilities.log(currentFile+"APK ERROR");
-    			System.out.println("error in loading file");
+    			System.out.println("error in loading file at index: "+j);
     			continue;
     		}
     		
-    		
-             
-            
-            Utilities.log(currentAPK+" start");
+    		//this part is for time
+   		 	int timeMin = 30;
+   		 	long timeLenght = timeMin*60000;
+   		 	//times = times*60000;
+   		 	long testStartTime = System.currentTimeMillis();
+   		 	long testEndTime = testStartTime+timeLenght;
+   
+            Utilities.log(currentAPK+" start at index: "+j);
             //enter test here
 
             //initialize the term
@@ -120,6 +126,11 @@ public class changeAPK {
             
 
             while(!sTree.isFrontierEmpty()) {
+            	//exit condition in case of error
+            	if(System.currentTimeMillis()>testEndTime) {
+            		Utilities.log(currentAPK+" 30min timeout exit at index: "+j);
+            		break;
+            	}
             	System.out.println("Processing");
             	Node n = sTree.popFrontier();
     			sTree.addExplored(n.stateName);
@@ -165,7 +176,7 @@ public class changeAPK {
             
             System.out.println("test is over");
             //When the test end 
-            Utilities.log(currentAPK+" end");
+            Utilities.log(currentAPK+" end at index: "+j);
             
             try {
             	wd.removeApp(currentFile.getName().substring(0, currentFile.getName().length()-4));
@@ -347,9 +358,9 @@ public class changeAPK {
         		el.click();
         	}
 			Thread.sleep(30);
-			 } catch (InterruptedException e) {
+			 } catch (Exception e) {
 			// TODO Auto-generated catch block
-	
+				 Utilities.log("Error with pressing start");
 			 }
         }
     }
