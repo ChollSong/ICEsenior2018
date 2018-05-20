@@ -52,7 +52,7 @@ public class HTTPMarker {
      capabilities.setCapability("unicodeKeyboard", "true");                
      capabilities.setCapability("app", apkPath);
      capabilities.setCapability("autoGrantPermissions", "true");
-     capabilities.setCapability("fullReset", "false");
+     capabilities.setCapability("fullReset", "true");
      driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
      driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	   
