@@ -1,4 +1,4 @@
-awimport csv
+import csv
 
 #li = ['1-20', '21-40', '41-60', '61-80', '81-100', '101-120', '121-140', '161-180', '180-200']
 '''Perform merging of feature engineered files'''

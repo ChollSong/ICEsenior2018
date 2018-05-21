@@ -14,4 +14,5 @@ List of all libraries (Python)
 - gplaycli
 - bs4
 - adblockparser
-- 
+- re
+- pathlib
