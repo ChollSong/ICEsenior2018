@@ -38,7 +38,7 @@ import java.time.LocalDateTime;
 
 
 public class changeAPK {
-	 public static AppiumDriver  wd;
+     public static AppiumDriver  wd;
      public static Long times;
      public static List<File> filesInFolder;
      public static String currentAPK;
@@ -47,62 +47,61 @@ public class changeAPK {
     public static void main(String[] args) throws MalformedURLException {
         System.out.println("test APK from x to y");
         System.out.println("insert x");
-    	Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int x = scanner.nextInt();
         System.out.println("insert y");
-    	Scanner scanner2 = new Scanner(System.in);
+        Scanner scanner2 = new Scanner(System.in);
         int y = scanner2.nextInt();
         
         try {
-			filesInFolder = Files.walk(Paths.get("G:\\APK\\#1-100"))
-			        .filter(Files::isRegularFile)
-			        .map(Path::toFile)
-			        .collect(Collectors.toList());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            filesInFolder = Files.walk(Paths.get("/Volumes/Senior/APK/1-100/"))
+                    .filter(Files::isRegularFile)
+                    .map(Path::toFile)
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
        try {
-    	   HTTPMarker.markHTML();
+           HTTPMarker.markHTML();
        }catch(Exception e) {
-    	   Utilities.log("Error applying start marker");
+           Utilities.log("Error applying start marker");
        }
        //code starting 
       
-    	for(int j = x-1 ;j < y ;j++){
-    		
-    	
-				File currentFile = filesInFolder.get(j);
-				//alter this
-				currentAPK = "G:\\APK\\#1-100\\" + currentFile.getName();
-			
-    		System.out.println(currentAPK);
-    		try {
-    			 DesiredCapabilities capabilities = new DesiredCapabilities();
-                 capabilities.setCapability("appium-version", "1.7.2");
-                 capabilities.setCapability("platformName", "Android");
-                 capabilities.setCapability("platformVersion", "6.0");
-                 capabilities.setCapability("deviceName", "YFBDU15519002831");
-                 capabilities.setCapability("unicodeKeyboard", "true");                
-                 capabilities.setCapability("app", currentAPK);
-                 capabilities.setCapability("autoGrantPermissions", "true");
-                 capabilities.setCapability("fullReset", "false");
-                 
-                 wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
-                 wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-    		}catch(Exception e){
-    			Utilities.log(currentFile+"APK ERROR");
-    			System.out.println("error in loading file at index: "+j);
-    			continue;
-    		}
-    		
-    		//this part is for time
-   		 	int timeMin = 30;
-   		 	long timeLenght = timeMin*60000;
-   		 	//times = times*60000;
-   		 	long testStartTime = System.currentTimeMillis();
-   		 	long testEndTime = testStartTime+timeLenght;
+        for(int j = x ;j <= y ;j++){
+            
+            File currentFile = filesInFolder.get(j);
+            //alter this
+            currentAPK = "/Volumes/Senior/APK/1-100/" + currentFile.getName();
+        
+        System.out.println(currentAPK);
+        try {
+             DesiredCapabilities capabilities = new DesiredCapabilities();
+             capabilities.setCapability("appium-version", "1.7.2");
+             capabilities.setCapability("platformName", "Android");
+             capabilities.setCapability("platformVersion", "6.0.1");
+             capabilities.setCapability("deviceName", "4100185ef208a193");
+             capabilities.setCapability("unicodeKeyboard", "true");                
+             capabilities.setCapability("app", currentAPK);
+             capabilities.setCapability("autoGrantPermissions", "true");
+             capabilities.setCapability("fullReset", "false");
+             
+             wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+             wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+            }catch(Exception e){
+                Utilities.log(currentFile+" APK ERROR");
+                System.out.println("error in loading file at index: "+j);
+                continue;
+            }
+            
+            //this part is for time
+            int timeMin = 30;
+            long timeLenght = timeMin*60000;
+            //times = times*60000;
+            long testStartTime = System.currentTimeMillis();
+            long testEndTime = testStartTime+timeLenght;
    
             Utilities.log(currentAPK+" start at index: "+j);
             //enter test here
@@ -126,52 +125,52 @@ public class changeAPK {
             
 
             while(!sTree.isFrontierEmpty()) {
-            	//exit condition in case of error
-            	if(System.currentTimeMillis()>testEndTime) {
-            		Utilities.log(currentAPK+" 30min timeout exit at index: "+j);
-            		break;
-            	}
-            	System.out.println("Processing");
-            	Node n = sTree.popFrontier();
-    			sTree.addExplored(n.stateName);
-            	for(int i=0; i< n.clickableNum; i++) {
-            		String currentName = "ErrorState";
-            		int clickableNum = 0;
-            		if(goIndex(i)) {
-            			
-            		}
-            		currentName = getName();
-            		clickableNum = Utilities.clickableCount(currentName);
-            		//limit to 15
-            		if(clickableNum>15) {
-            			clickableNum = 15;
-            		}
-            		//for error
-            		try {
-						Thread.sleep(300);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-            		if(!sTree.isExploredNode(currentName)&&!currentName.equals("ErrorState")) {
-            			//for handling cases where exit app
-            			
-            			if(!Utilities.getPackageName(currentName).equals(sTree.packageName)) {
-            				currentName = "OUTSIDE APP";
-            				//for seeing what kind of package name it has
-            				System.out.println(currentName);
-            				clickableNum = 0;
-            			}
-            			Node newNode = new Node(currentName,clickableNum,n ,i);
-            			
-            			System.out.println(n.clickableNum+" ways that can go");
-            			sTree.pushFrontier(newNode);
-            		}else {
-            			System.out.println("at explored");
-            			System.out.println(currentName);
-            		}
-            		goNode(sTree, n);
-            	}
+                //exit condition in case of error
+                if(System.currentTimeMillis()>testEndTime) {
+                    Utilities.log(currentAPK+" 30min timeout exit at index: "+j);
+                    break;
+                }
+                System.out.println("Processing");
+                Node n = sTree.popFrontier();
+                sTree.addExplored(n.stateName);
+                for(int i=0; i< n.clickableNum; i++) {
+                    String currentName = "ErrorState";
+                    int clickableNum = 0;
+                    if(goIndex(i)) {
+                        
+                    }
+                    currentName = getName();
+                    clickableNum = Utilities.clickableCount(currentName);
+                    //limit to 15
+                    if(clickableNum>15) {
+                        clickableNum = 15;
+                    }
+                    //for error
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    if(!sTree.isExploredNode(currentName)&&!currentName.equals("ErrorState")) {
+                        //for handling cases where exit app
+                        
+                        if(!Utilities.getPackageName(currentName).equals(sTree.packageName)) {
+                            currentName = "OUTSIDE APP";
+                            //for seeing what kind of package name it has
+                            System.out.println(currentName);
+                            clickableNum = 0;
+                        }
+                        Node newNode = new Node(currentName,clickableNum,n ,i);
+                        
+                        System.out.println(n.clickableNum+" ways that can go");
+                        sTree.pushFrontier(newNode);
+                    }else {
+                        System.out.println("at explored");
+                        System.out.println(currentName);
+                    }
+                    goNode(sTree, n);
+                }
             }
             
             System.out.println("test is over");
@@ -179,80 +178,80 @@ public class changeAPK {
             Utilities.log(currentAPK+" end at index: "+j);
             
             try {
-            	wd.removeApp(currentFile.getName().substring(0, currentFile.getName().length()-4));
+                wd.removeApp(currentFile.getName().substring(0, currentFile.getName().length()-4));
                 System.out.println("appExit");
                 wd.quit();
             }catch(Exception e) {
-            	System.out.println("error:EXIT");
+                System.out.println("error:EXIT");
             }
             
             
             
             try {
-         	   HTTPMarker.markHTML();
+               HTTPMarker.markHTML();
             }catch(Exception e) {
-         	   Utilities.log("Error applying end marker");
+               Utilities.log("Error applying end marker");
             }
-    	}
-    	    	
+        }
+                
     }
     
     public static void goNode(SearchTree st, Node n) {
-    	//go back to first page
-    	int count = 0;
-    	while(!Utilities.isSimilar(getName(), st.getRoot().stateName)) {
-    	//while(!getName().equals(st.getRoot().stateName)) {
-    		if(count>n.depth+1) {
-    			System.out.println("reseting");
-            	try {
-            		wd.resetApp();
-					Thread.sleep(300);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					System.out.println("Error:Reset");
-					e.printStackTrace();
-				}
-            	start();
-            	break;
-    		}
-    		System.out.println("going back");
-    		goBack();
-    		count++;
-    		try {
-    			//can be set for longer
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    		
-    	}
-    	
-    	/*wd.resetApp();
-    	try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-    	traverseNode(n);
-    	
+        //go back to first page
+        int count = 0;
+        while(!Utilities.isSimilar(getName(), st.getRoot().stateName)) {
+        //while(!getName().equals(st.getRoot().stateName)) {
+            if(count>n.depth+1) {
+                System.out.println("reseting");
+                try {
+                    wd.resetApp();
+                    Thread.sleep(300);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    System.out.println("Error:Reset");
+                    e.printStackTrace();
+                }
+                start();
+                break;
+            }
+            System.out.println("going back");
+            goBack();
+            count++;
+            try {
+                //can be set for longer
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+        }
+        
+        /*wd.resetApp();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }*/
+        traverseNode(n);
+        
     
     }
     
     private static void traverseNode(Node n) {
-    	if(n.route==-1){
-    		System.out.println("At root");
-    		return;
-    	}
-    	try {
-			Thread.sleep(300);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	traverseNode(n.parent);
-    	goIndex(n.route);
+        if(n.route==-1){
+            System.out.println("At root");
+            return;
+        }
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        traverseNode(n.parent);
+        goIndex(n.route);
     }
     
   
@@ -274,7 +273,7 @@ public class changeAPK {
     public static boolean goIndex(int i){
         try{
             {
-            	System.out.println("go to "+i);
+                System.out.println("go to "+i);
                 WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).instance("+i+")"));   
                 el.click();
                 return true;
@@ -331,7 +330,7 @@ public class changeAPK {
     }
     //resets the app
     public static void start() {
-    	//might need to change to something else if decide to hash current name
+        //might need to change to something else if decide to hash current name
         long times = 5000;
         //times = times*60000;
         long startTime = System.currentTimeMillis();
@@ -339,29 +338,29 @@ public class changeAPK {
         //for stalling until start
         //might need to set timeout so bounch out of app
         while (System.currentTimeMillis()<endTime && Utilities.clickableCount(getName())<1) {
-			 try {
-				 System.out.println("Count of clickables"+Utilities.clickableCount(getName()));
-			Thread.sleep(300);
-			 } catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			 }
-		 	}
+             try {
+                 System.out.println("Count of clickables"+Utilities.clickableCount(getName()));
+            Thread.sleep(300);
+             } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+             }
+            }
         
         if(Utilities.isLoadPage(getName())) {
         try {
  
-        	WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).textMatches(\""+
-        	Utilities.foundString(getName())
-        			+"\")"));
-        	if(el!= null) {
-        		el.click();
-        	}
-			Thread.sleep(30);
-			 } catch (Exception e) {
-			// TODO Auto-generated catch block
-				 Utilities.log("Error with pressing start");
-			 }
+            WebElement el =  wd.findElement(MobileBy.AndroidUIAutomator("new UiSelector().clickable(true).textMatches(\""+
+            Utilities.foundString(getName())
+                    +"\")"));
+            if(el!= null) {
+                el.click();
+            }
+            Thread.sleep(30);
+             } catch (Exception e) {
+            // TODO Auto-generated catch block
+                 Utilities.log("Error with pressing start");
+             }
         }
     }
     
