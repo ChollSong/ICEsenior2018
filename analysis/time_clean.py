@@ -32,7 +32,7 @@ def to_localtime(utc_timestamp):
 thing = ['1-20', '21-40', '41-60', '61-80', '81-100', '101-120', '121-140', '141-160', '161-180', '181-200', '201-220']
 total = 0
 for text in thing:
-    data = import_json('test'+text+'.prxs')
+    data = import_json('raw_prxs/test'+text+'.prxs')
     lol = open('log/log'+text+'.txt', 'r')
     reader = lol.readlines()
     extracted = data['flows'].copy()

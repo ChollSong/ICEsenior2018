@@ -8,7 +8,7 @@ import csv
 (One problem is that if it errors, then you will have to download the errored APK manually)
 '''
 
-with open('appData_5.csv', 'r') as data_file:
+with open('appId_data.csv', 'r') as data_file:
     data = csv.reader(data_file)
     f = open('cannotdownload.csv', 'a')
     writer = csv.writer(f)

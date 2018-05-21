@@ -12,7 +12,7 @@ List of all libraries (Python)
 *All above for naive bayes*
 
 - gplaycli
-- bs4
+- beautifulsoup4
 - adblockparser
 - re
 - pathlib
