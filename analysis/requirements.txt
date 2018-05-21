@@ -1,0 +1,17 @@
+List of all libraries (javascript)
+- google-play-scraper
+
+List of all libraries (Python)
+- scikit-learn
+- numpy
+- scipy
+- matplotlib
+- pandas
+- graphviz
+
+*All above for naive bayes*
+
+- gplaycli
+- bs4
+- adblockparser
+- 

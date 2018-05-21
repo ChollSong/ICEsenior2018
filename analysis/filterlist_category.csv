@@ -1,0 +1,130 @@
+title,url,Category
+280 Blocker,https://280blocker.net/files/280blocker_adblock.txt,Ads&tracking
+AakList (Anti-Adblock Killer),https://raw.githubusercontent.com/reek/anti-adblock-killer/master/anti-adblock-killer-filters.txt,Ads
+ABP Japanese 3rd Party SNS Filters,https://raw.githubusercontent.com/k2jp/abp-japanese-filters/master/abpjf_3rd_party_sns.txt,Ads&tracking
+ABP Japanese Element-hiding Filters,https://raw.githubusercontent.com/k2jp/abp-japanese-filters/master/abpjf_element_hiding.txt,Ads
+ABP Japanese Filters,https://raw.githubusercontent.com/k2jp/abp-japanese-filters/master/abpjf.txt,Ads&tracking
+ABP Japanese Paranoid Filters,https://raw.githubusercontent.com/k2jp/abp-japanese-filters/master/abpjf_paranoid.txt,Ads&tracking
+ABPindo,https://raw.githubusercontent.com/heradhis/indonesianadblockrules/master/subscriptions/abpindo.txt,Ads
+ABPVN List,https://raw.githubusercontent.com/abpvn/abpvn/master/filter/abpvn.txt,Ads
+abuse.ch Feodo BadIP Blocklist,https://feodotracker.abuse.ch/blocklist/?download=badips,Malicious
+abuse.ch Feodo Domain Blocklist,https://feodotracker.abuse.ch/blocklist/?download=domainblocklist,Malicious
+abuse.ch Feodo IP Blocklist,https://feodotracker.abuse.ch/blocklist/?download=ipblocklist,Malicious
+abuse.ch ZeuS Compromised URL Blocklist,https://zeustracker.abuse.ch/blocklist.php?download=compromised,Malicious
+abuse.ch ZeuS Domain Blocklist,https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist,Malicious
+"abuse.ch ZeuS Domain Blocklist ""BadDomains""",https://zeustracker.abuse.ch/blocklist.php?download=baddomains,Malicious
+abuse.ch ZeuS IP Blocklist,https://zeustracker.abuse.ch/blocklist.php?download=ipblocklist,Malicious
+"abuse.ch ZeuS IP Blocklist ""BadIPs""",https://zeustracker.abuse.ch/blocklist.php?download=badips,Malicious
+Acceptable Ads,https://easylist-downloads.adblockplus.org/exceptionrules.txt,Ads
+Adblock Filters by Gurud.ee,http://gurud.ee/ab.txt,Ads&tracking
+Adblock Warning Removal List,https://easylist-downloads.adblockplus.org/antiadblockfilters.txt,Ads
+Adblock YouTube Ads,https://raw.githubusercontent.com/kbinani/adblock-youtube-ads/master/signed.txt,Ads
+Additional Adblock Rules,https://dl.dropboxusercontent.com/s/1ybzw9lb7m1qiyl/AAs.txt,Ads
+Adguard Annoyances Filter,https://adguard.com/en/filter-rules.html?id=14,Ads
+Adguard Japanese Filter,https://adguard.com/en/filter-rules.html?id=7,Ads
+Adguard Mobile Ads Filter,https://adguard.com/en/filter-rules.html?id=11,Ads
+Adguard Safari Filter,https://adguard.com/en/filter-rules.html?id=12,Ads
+Adguard Social Media Filter,https://adguard.com/en/filter-rules.html?id=4,Ads
+Adguard Spyware Filter,https://adguard.com/en/filter-rules.html?id=3,Tracking
+Adware Filters,https://easylist-downloads.adblockplus.org/adwarefilters.txt,Ads
+Anti-Facebook List,https://fanboy.co.nz/fanboy-antifacebook.txt,Tracking
+Anti-PopAds,https://raw.githubusercontent.com/Yhonay/antipopads/master/popads.txt,Ads
+Ayucat Powerful List,http://git.sourceforge.jp/view?p=ayucat-list/ayucat-list.git;a=blob_plain;f=ayucat-list.txt;hb=b254c74c132832a3ade7b9d42c2ef8d3dd59fdb9,Ads
+Bad JAV Sites,https://pastebin.com/raw/kDqbYwWr,Malicious
+Banki.ru Plus Adblock List,https://raw.githubusercontent.com/rebelion76/bankiru_plus_adblock_list/master/bankiru_plus.txt,Ads
+Better.fyi | Trackers (List),https://raw.githubusercontent.com/anarki999/Adblock-List-Archive/master/Better.fyiTrackersBlocklist.txt,Ads&tracking
+Block the EU Cookie Shit List,https://raw.githubusercontent.com/r4vi/block-the-eu-cookie-shit-list/master/filterlist.txt,Ads
+Blockzilla,https://raw.githubusercontent.com/zpacman/Blockzilla/master/Blockzilla.txt,Ads&tracking
+BLOGRAM Analysis Block Filter List for Japan,http://blogram.net/wp-content/uploads/easylist3.txt,Tracking
+BLOGRAM Basic Filter List for Japan,http://blogram.net/wp-content/uploads/easylist2.txt,Ads
+BLOGRAM Element Hiding Filter List for Japan,http://blogram.net/wp-content/uploads/easylist1.txt,Ads
+Bulgarian List,https://stanev.org/abp/adblock_bg.txt,Ads
+CJX's Annoyance List,https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt,Ads
+Clickbait Blocklist,https://raw.githubusercontent.com/cpeterso/clickbait-blocklist/master/clickbait-blocklist.txt,Ads
+Cookie Blocklist,https://www.eff.org/files/cookieblocklist.txt,Tracking
+Disconnect Advertising Filter List,https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt,Ads
+Disconnect Malvertising Filter List,https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt,Malicious
+Disconnect Malware Filter List,https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt,Malicious
+Disconnect Tracking Filter List,https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt,Tracking
+DNS-BH Adblock Plus Malware Domains Full,https://easylist-downloads.adblockplus.org/malwaredomains_full.txt,Malicious
+DNS-BH Malware Domains,http://mirror1.malwaredomains.com/files/justdomains,Malicious
+DNS-BH Malware Domains Immortal,http://mirror1.malwaredomains.com/files/immortal_domains.txt,Malicious
+DShield.org Recommended Block List,http://feeds.dshield.org/block.txt,Malicious
+EasyList,https://easylist.to/easylist/easylist.txt,Ads
+EasyList Thailand,https://raw.githubusercontent.com/easylist-thailand/easylist-thailand/master/subscription/easylist-thailand.txt,Ads
+EasyList Without Element Hiding Rules,https://easylist-downloads.adblockplus.org/easylist_noelemhide.txt,Ads
+EasyList Without Rules for Adult Sites,https://easylist-downloads.adblockplus.org/easylist_noadult.txt,Adult
+EasyPrivacy,https://easylist.to/easylist/easyprivacy.txt,Tracking
+Ebates Cash Back Shopping,https://www.ebates.com/whitelist/ebates-cash-back-shopping.txt,Ads
+Facebook Annoyances Blocker,https://easylist-downloads.adblockplus.org/fb_annoyances_full.txt,Ads
+Facebook News Feed Annoyances Blocker,https://easylist-downloads.adblockplus.org/fb_annoyances_newsfeed.txt,Ads
+Facebook Privacy List,http://www.squirrelconspiracy.net/abp/facebook-privacy-list.txt,Ads
+Facebook Sidebar Blocker,https://easylist-downloads.adblockplus.org/fb_annoyances_sidebar.txt,Ads
+Fake-News List,https://raw.githubusercontent.com/ryanbr/fanboy-adblock/master/fake-news.txt,Ads
+Fanboy's Cookiemonster List,https://fanboy.co.nz/fanboy-cookiemonster.txt,Tracking
+Fanboy's Enhanced Tracking List,https://fanboy.co.nz/enhancedstats.txt,Tracking
+Filters by hant0508,https://raw.githubusercontent.com/hant05080/uBlock-filters/master/filters.txt,Ads
+Filtros Nauscopicos,https://raw.githubusercontent.com/mozillahispano/nauscopio-filtros/master/filtros.txt,Ads&tracking
+Firime (FED) EasyDownload List,https://pastebin.com/raw/r9a5WrZa,Ads
+Hexxium Creations Threat List,https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/hexxiumthreatlist.txt,Malicious
+Icelandic ABP List,http://adblock.gardar.net/is.abp.txt,Ads
+Ilyakatz's Additional Filters for Adblock,https://raw.githubusercontent.com/ilyakatz/adblock_filters/master/inpage_popups.txt,Ads
+iploggerfilter,https://raw.githubusercontent.com/piperun/iploggerfilter/master/filterlist,Tracking
+Japanese Site Adblock Filter,http://qme.mydns.jp/data/Adblock.txt,Ads
+Japanese Site Adblock Filter ver 2,http://qme.mydns.jp/data/AdblockV2.txt,Ads
+Lead Generator,https://raw.githubusercontent.com/Rpsl/adblock-leadgenerator-list/master/list/list.txt,Ads
+Linkedinsanity Rules,https://raw.githubusercontent.com/taylr/linkedinsanity/master/linkedinsanity.txt,Ads
+Malware URLs,http://malwareurls.joxeankoret.com/normal.txt,Malicious
+Malware URLs Domains,http://malwareurls.joxeankoret.com/domains.txt,Malicious
+Malware URLs Gray Area,http://malwareurls.joxeankoret.com/grayarea.txt,Malicious
+MoaAB: Mother of All AD-BLOCKING,https://adblock.mahakala.is/,Ads&tracking
+Mute,http://mute.bradconte.com/mute.txt,Ads
+NoCoin,https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/nocoin.txt,Bitcoin
+Nopelist,https://raw.githubusercontent.com/genediazjr/nopelist/master/nopelist.txt,Malicious
+NoTrack Blocklist,https://raw.githubusercontent.com/quidsup/notrack/master/trackers.txt,Tracking
+OpenPhish Phishing Intelligence Community Feed,https://openphish.com/feed.txt,Malicious
+Overlay Blocker,https://raw.githubusercontent.com/LordBadmintonofYorkshire/Overlay-Blocker/master/blocklist.txt,Ads
+Prebake Obtrusive,https://raw.githubusercontent.com/liamja/Prebake/master/obtrusive.txt,Ads&tracking
+Prebake Quiet,https://raw.githubusercontent.com/liamja/Prebake/master/quiet.txt,Ads
+Privacy Filters,https://raw.githubusercontent.com/metaphoricgiraffe/tracking-filters/master/trackingfilters.txt,Tracking
+Ransomware Tracker CryptoWall Ransomware C2 Domain Blocklist,https://ransomwaretracker.abuse.ch/downloads/CW_C2_DOMBL.txt,Malicious
+Ransomware Tracker CryptoWall Ransomware C2 URL Blocklist,https://ransomwaretracker.abuse.ch/downloads/CW_C2_URLBL.txt,Malicious
+Ransomware Tracker CryptoWall Ransomware Payment Sites Domain Blocklist,https://ransomwaretracker.abuse.ch/downloads/CW_PS_DOMBL.txt,Malicious
+Ransomware Tracker CryptoWall Ransomware Payment Sites IP Blocklist,https://ransomwaretracker.abuse.ch/downloads/CW_PS_IPBL.txt,Malicious
+Ransomware Tracker Domain Blocklist,https://ransomwaretracker.abuse.ch/downloads/RW_DOMBL.txt,Malicious
+Ransomware Tracker IP Blocklist,https://ransomwaretracker.abuse.ch/downloads/RW_IPBL.txt,Malicious
+Ransomware Tracker Locky Ransomware C2 Domain Blocklist,https://ransomwaretracker.abuse.ch/downloads/LY_C2_DOMBL.txt,Malicious
+Ransomware Tracker Locky Ransomware C2 IP Blocklist,https://ransomwaretracker.abuse.ch/downloads/LY_C2_IPBL.txt,Malicious
+Ransomware Tracker Locky Ransomware Distribution Site URL Blocklist,https://ransomwaretracker.abuse.ch/downloads/LY_DS_URLBL.txt,Malicious
+Ransomware Tracker Locky Ransomware Payment Sites Domain Blocklist,https://ransomwaretracker.abuse.ch/downloads/LY_PS_DOMBL.txt,Malicious
+Ransomware Tracker Locky Ransomware Payment Sites IP Blocklist,https://ransomwaretracker.abuse.ch/downloads/LY_PS_IPBL.txt,Malicious
+Ransomware Tracker TeslaCrypt Ransomware C2 Domain Blocklist,https://ransomwaretracker.abuse.ch/downloads/TC_C2_DOMBL.txt,Malicious
+Ransomware Tracker TeslaCrypt Ransomware C2 URL Blocklist,https://ransomwaretracker.abuse.ch/downloads/TC_C2_URLBL.txt,Malicious
+Ransomware Tracker TeslaCrypt Ransomware Distribution Site URL Blocklist,https://ransomwaretracker.abuse.ch/downloads/TC_DS_URLBL.txt,Malicious
+Ransomware Tracker TeslaCrypt Ransomware Payment Sites Domain Blocklist,https://ransomwaretracker.abuse.ch/downloads/TC_PS_DOMBL.txt,Malicious
+Ransomware Tracker TeslaCrypt Ransomware Payment Sites IP Blocklist,https://ransomwaretracker.abuse.ch/downloads/TC_PS_IPBL.txt,Malicious
+Ransomware Tracker TorrentLocker Ransomware C2 Domain Blocklist,https://ransomwaretracker.abuse.ch/downloads/TL_C2_DOMBL.txt,Malicious
+Ransomware Tracker TorrentLocker Ransomware C2 IP Blocklist,https://ransomwaretracker.abuse.ch/downloads/TL_C2_IPBL.txt,Malicious
+Ransomware Tracker TorrentLocker Ransomware Payment Sites Domain Blocklist,https://ransomwaretracker.abuse.ch/downloads/TL_PS_DOMBL.txt,Malicious
+Ransomware Tracker TorrentLocker Ransomware Payment Sites IP Blocklist,https://ransomwaretracker.abuse.ch/downloads/TL_PS_IPBL.txt,Malicious
+Ransomware Tracker URL Blocklist,https://ransomwaretracker.abuse.ch/downloads/RW_URLBL.txt,Malicious
+SA-Blacklist,http://www.sa-blacklist.stearns.org/sa-blacklist/sa-blacklist.current.domains,Ads
+Satterly's Adblock Plus Filters,https://satterly.neocities.org/abp_filters.txt,Ads
+Spam404,https://raw.githubusercontent.com/Dawsey21/Lists/master/adblock-list.txt,Malicious
+Spam404 Domain Blacklist,https://raw.githubusercontent.com/Dawsey21/Lists/master/main-blacklist.txt,Malicious
+Thoughtconverge's Custom AdBlock Filters,https://raw.githubusercontent.com/thoughtconverge/abf/master/abf.txt,Ads&tracking
+uAssets Badware,https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt,Malicious
+uBlock Antiskimming List,https://raw.githubusercontent.com/byaka/ublock-antiskimming-list/master/build/data.txt,Malicious
+uBlock Filters Plus,https://raw.githubusercontent.com/IDKwhattoputhere/uBlock-Filters-Plus/master/uBlock-Filters-Plus.txt,Ads
+uBO-Personal-Filters,https://raw.githubusercontent.com/uBlock-user/uBO-Personal-Filters/master/uPF.txt,Ads&tracking
+Web Annoyances Ultralist,https://raw.githubusercontent.com/yourduskquibbles/webannoyances/master/ultralist.txt,Ads
+YouTube: Other Annoyances,https://easylist-downloads.adblockplus.org/yt_annoyances_other.txt,Ads
+YouTube: Pure Video Experience,https://easylist-downloads.adblockplus.org/yt_annoyances_full.txt,Ads
+CoinBlocker Domains List,https://raw.githubusercontent.com/ZeroDot1/CoinBlockerLists/master/list.txt,Bitcoin
+CoinBlocker Domains List Browser,https://raw.githubusercontent.com/ZeroDot1/CoinBlockerLists/master/list_browser.txt,Bitcoin
+CoinBlocker Hosts List,https://raw.githubusercontent.com/ZeroDot1/CoinBlockerLists/master/hosts,Bitcoin
+CoinMiner,https://raw.githubusercontent.com/anudeepND/blacklist/master/CoinMiner.txt,Bitcoin
+Thai Paranoid Block,https://raw.githubusercontent.com/kowith337/ThaiParanoidBlock/master/ThaiParanoid.txt,Ads&tracking
+ThaiAntiForceLike,https://raw.githubusercontent.com/kowith337/ThaiAntiForceLike/master/AntiForceLike.txt,Ads
+YouTube Video Ads Blocklist Domains,https://raw.githubusercontent.com/anudeepND/youtubeadsblacklist/master/domainlist.txt,Ads
+YouTube Video Ads Blocklist Hosts,https://raw.githubusercontent.com/anudeepND/youtubeadsblacklist/master/hosts.txt,Ads
